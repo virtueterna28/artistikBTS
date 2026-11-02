@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.slide {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+.royal-mode-input {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.royal-mode-toggle {
+  position: fixed;
+  z-index: 100;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid #f6d365;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f6d365, #d89b27);
+  color: #15234f;
+  box-shadow: 0 4px 18px #07133366;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.royal-mode-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 22px #f6d36566;
+}
+
+.royal-mode-toggle > span:first-child {
+  font-size: 1.2rem;
+}
+
+.royal-toggle-state::after {
+  content: "ON";
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  background: #15234f;
+  color: #f6d365;
+  font-size: 0.65rem;
+}
+
+#royal-mode:not(:checked) + .royal-mode-toggle .royal-toggle-state::after {
+  content: "OFF";
+  background: #64748b;
+  color: white;
+}
+
+.royal-mode-input:focus-visible + .royal-mode-toggle {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* Royal palette is active on first load and can be toggled with the crown. */
+body:has(#royal-mode:checked) {
+  color: #fff4cf;
+  background: linear-gradient(135deg, #101a3d, #233686 55%, #75551b);
+  background-attachment: fixed;
+}
+
+body:has(#royal-mode:checked) nav {
+  background: linear-gradient(100deg, #101a3d, #233686 65%, #574018) !important;
+  border-bottom: 1px solid #d9ad4b;
+}
+
+body:has(#royal-mode:checked) header#beranda {
+  border-bottom: 3px solid #d9ad4b;
+}
+
+body:has(#royal-mode:checked) section:not(#kontak) {
+  color: #fff4cf;
+  background: linear-gradient(135deg, #111a3b, #1c2c62 58%, #3c321e) !important;
+}
+
+body:has(#royal-mode:checked) section#kontak {
+  background: linear-gradient(120deg, #111a3b, #233686 58%, #8c671e) !important;
+  border-top: 1px solid #f6d365;
+}
+
+body:has(#royal-mode:checked) section :is(h1, h2, h3) {
+  color: #ffe08a !important;
+  text-shadow: 0 2px 12px #00000055;
+}
+
+body:has(#royal-mode:checked) section p {
+  color: #f5edda !important;
+}
+
+body:has(#royal-mode:checked) section span:not(.animate-pulse) {
+  color: #ffe08a;
+}
+
+body:has(#royal-mode:checked) section#artistik .grid > div,
+body:has(#royal-mode:checked) section#bts .grid > div,
+body:has(#royal-mode:checked) section#sosmed .grid > a {
+  border: 1px solid #d9ad4b !important;
+  background: linear-gradient(155deg, #1a2857, #101a38) !important;
+  box-shadow: 0 12px 28px #050b20aa;
+}
+
+body:has(#royal-mode:checked) section .grid > div a,
+body:has(#royal-mode:checked) section a {
+  color: #ffe08a;
+}
+
+body:has(#royal-mode:checked) section a:hover {
+  color: #fff4cf;
+}
+
+body:has(#royal-mode:checked) section a[class*="bg-white"] {
+  background: linear-gradient(135deg, #ffe08a, #d89b27) !important;
+  color: #15234f !important;
+}
+
+body:has(#royal-mode:checked) section#sosmed a {
+  border-color: #b98c35 !important;
+  background: linear-gradient(145deg, #1a2857, #101a38) !important;
+}
+
+body:has(#royal-mode:checked) footer {
+  background: linear-gradient(100deg, #080f27, #18264f 65%, #382b16) !important;
+  border-top: 1px solid #d9ad4b;
+}
+
+body:has(#royal-mode:checked) img {
+  outline-color: #d9ad4b;
+}
+
+@media (max-width: 640px) {
+  .royal-mode-toggle {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  .royal-toggle-text {
+    display: none;
+  }
+}
